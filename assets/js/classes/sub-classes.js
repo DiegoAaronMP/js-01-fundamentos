@@ -1,5 +1,3 @@
-
-
 class Persona {
     static _conteo = 0;
     static get conteo() {
@@ -44,19 +42,23 @@ class Persona {
     }
 }
 
-const spiderman = new Persona('Peter Parker', 'Spider Man', 'Soy tu vecino amigable');
-const ironman = new Persona('Tony Stark', 'Iron Man', 'Soy Iron Man');
+// Herencia
+class Heroe extends Persona {
 
-spiderman.quienSoy();
-ironman.miFrase();
+    clan = 'Sin clan';
 
-spiderman.setComidaFavorita = 'El pie de cereza de la tía May';
-console.log(spiderman.getComidaFavorita);
+    constructor(nombre, codigo, frase) {
+        // * super hace referencia a la clase Persona
+        super(nombre, codigo, frase);
 
-// Persona._conteo = 2;
-console.log('Conteo estático', Persona._conteo);
-console.log(Persona.conteo);
-Persona.mensaje();
+        this.clan = 'Los Vengadores';
+    }
 
-// ! NO RECOMENDADO. Crear propiedades static fuera de class
-Persona.propiedadExterna = 'Hola mundo';
+    quienSoy() {
+        console.log(`Soy parte de ${this.clan}`);
+        // Para no sobreescribir el método padre
+        super.quienSoy();
+    }
+}
+
+const spiderman = new Heroe('Peter Parker', 'Spider Man', 'Soy tu vecino amigable');
