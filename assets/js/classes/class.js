@@ -1,6 +1,15 @@
 
 
 class Persona {
+    static _conteo = 0;
+    static get conteo() {
+        return Persona._conteo + 'instancias';
+    }
+
+    static mensaje() {
+        console.log('Hola a todos, soy un método estático');
+    }
+
     // Propiedades
     nombre = '';
     codigo = '';
@@ -11,6 +20,8 @@ class Persona {
         this.nombre = nombre;
         this.codigo = codigo;
         this.frase  = frase;
+
+        Persona._conteo++;
     }
 
     // Setters y Getters
@@ -41,3 +52,11 @@ ironman.miFrase();
 
 spiderman.setComidaFavorita = 'El pie de cereza de la tía May';
 console.log(spiderman.getComidaFavorita);
+
+// Persona._conteo = 2;
+console.log('Conteo estático', Persona._conteo);
+console.log(Persona.conteo);
+Persona.mensaje();
+
+// ! NO RECOMENDADO. Crear propiedades static fuera de class
+Persona.propiedadExterna = 'Hola mundo';
